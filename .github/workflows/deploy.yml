@@ -35,6 +35,7 @@ jobs:
           script: |
             cd domains
             cd training.nicesoft.me/
+            git fetch
             git checkout feature/github-actions
             git pull
             php ~/composer.phar install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
