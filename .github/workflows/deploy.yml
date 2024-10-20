@@ -2,7 +2,7 @@ name: Deploy to server
 
 on:
   push:
-    branches: [feature/github-actions]
+    branches: [feature/*,]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -36,7 +36,7 @@ jobs:
             cd domains
             cd training.nicesoft.me/
             git fetch
-            git checkout feature/github-actions
+            git checkout ${{ env.BRANCH }}
             git pull
             php ~/composer.phar install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
             php artisan migrate:fresh --seed --force
