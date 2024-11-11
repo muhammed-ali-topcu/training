@@ -19,6 +19,16 @@ jobs:
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
       - name: Generate key
         run: php artisan key:generate
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install node dependencies
+        run: npm ci
+      - name: Setup Project
+        run: |
+          npm run build
+
       - name: Directory Permissions
         run: chmod -R 777 storage bootstrap/cache
       - name: Create Database
@@ -30,16 +40,6 @@ jobs:
           DB_CONNECTION: sqlite
           DB_DATABASE: database/database.sqlite
         run: php artisan test
-
-        # npm
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - name: Install node dependencies
-        run: npm ci
-      - name: Setup Project
-        run: |
-          npm run build
 
       - name: Deploy PHP to Server
         if: ${{ success() }}
