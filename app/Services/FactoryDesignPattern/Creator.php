@@ -3,7 +3,6 @@
 namespace App\Services\FactoryDesignPattern;
 
 
-
 class Creator
 {
     public static function getInstance(ProductType $type): IProduct

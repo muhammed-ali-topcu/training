@@ -1,9 +1,7 @@
-<?
+<?php
 
 
 namespace App\Services\FactoryDesignPattern;
-
-
 
 enum ProductType: string
  {

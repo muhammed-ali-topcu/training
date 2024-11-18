@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FactoryDesingPatternController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,4 +18,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+Route::get('/design-patterns/factory', [FactoryDesingPatternController::class, '__invoke'])->name('design-patterns.factory');
 require __DIR__.'/auth.php';
